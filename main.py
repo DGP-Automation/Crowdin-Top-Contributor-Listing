@@ -98,6 +98,7 @@ def main():
                              json=body, headers=header)
         if request.status_code != 200:
             msg = f"Failed to generate reward code for {v[1]} ({k})"
+            print(msg)
             client.send_system_message(msg)
         else:
             generated_code = request.content.decode("utf-8")
@@ -110,6 +111,7 @@ def main():
                 client.send_project_member_message(k, user_notification_msg)
             if not result:
                 msg = f"Failed to add reward record for {v[1]} ({k})"
+                print(msg)
                 client.send_system_message(msg)
     print("End of reward system: %s" % datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
