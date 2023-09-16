@@ -108,7 +108,7 @@ def main():
                                                               reward=v[0],
                                                               license_key=generated_code)
                 print(user_notification_msg)
-                client.send_project_member_message(k, user_notification_msg)
+                client.send_project_member_message(user_notification_msg, k)
             if not result:
                 msg = f"Failed to add reward record for {v[1]} ({k})"
                 print(msg)
@@ -117,6 +117,9 @@ def main():
 
 
 if __name__ == "__main__":
+    print("Program process started: %s" % datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    main()
+    print("Initial run ended. Start schedule run.")
     schedule.every().day.at("10:00").do(main)
 
     while True:

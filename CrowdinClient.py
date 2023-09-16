@@ -115,11 +115,11 @@ class CrowdinClient:
                              f"Message: {response.json()}")
         return True
 
-    def send_project_member_message(self, msg: str, user_ids: list|int):
+    def send_project_member_message(self, msg: str, user_ids: list | int):
         endpoint = f"{self.host}/projects/{self.project_id}/notify"
         body = {
             "message": msg,
-            "userIds": user_ids if type(user_ids) is list else [user_ids]
+            "userIds": user_ids if type(user_ids) is list else [int(user_ids)]
         }
         response = httpx.post(endpoint, headers=self.__headers, json=body)
         if response.status_code != 204:

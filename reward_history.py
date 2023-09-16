@@ -33,7 +33,7 @@ def add_new_reward_record(crowdin_user_id: int, code: str, reward_amount: int) -
     """
     current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     next_date = (datetime.now() + timedelta(days=reward_amount)).strftime("%Y-%m-%dT%H:%M:%S")
-    sql = ("INSERT INTO `reward` (`crowdin-user-id`, `code`, `assign-date`, `next-date`) "
+    sql = ("INSERT INTO `reward` (`crowdin-user-id`, `code`, `assign-date`, `next-date`) " 
            "VALUES ('%s', '%s', '%s', '%s')" % (crowdin_user_id, code, current_time, next_date))
     result = db.execute(sql)
     if result == 0:
